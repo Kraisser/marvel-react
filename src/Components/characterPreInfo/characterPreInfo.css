@@ -1,0 +1,83 @@
+.charPreinfoWrapper {
+	box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+	display: flex;
+}
+.preInfoWrapper {
+	display: grid;
+	grid-template-columns: 180px 1fr;
+	grid-column-gap: 30px;
+	width: 550px;
+	height: 250px;
+	padding: 35px 40px;
+}
+.preInfoImg {
+	width: 180px;
+	height: 180px;
+	object-fit: contain;
+}
+.preInfoContainer {
+	max-width: 265px;
+	position: relative;
+}
+.preInfoContainer h3 {
+	margin: 0;
+	font-size: 22px;
+}
+.preInfoDescription {
+	margin: 0;
+	font-size: 14px;
+	max-height: 97px;
+}
+.preInfoDescriptionOverflow {
+	position: relative;
+	height: 97px;
+	margin: 10px 0;
+	overflow: hidden;
+}
+.preInfoDescriptionOverflow::after {
+	content: '';
+	width: 100%;
+	height: 1.2em;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: linear-gradient(to right, transparent, #fff);
+}
+.preInfoLinkContainer {
+	position: absolute;
+	bottom: 0;
+	display: flex;
+}
+
+/*  */
+.randomCharacterWrapper {
+	position: relative;
+	display: flex;
+	background-color: #232222;
+	width: 550px;
+	height: 250px;
+	padding: 35px 40px;
+}
+.randomCharacterWrapper img {
+	position: absolute;
+	left: 70%;
+	top: 50px;
+}
+.randomCharacterContainer {
+	position: relative;
+}
+.randomCharacterContainer p {
+	font-size: 24px;
+	font-weight: 700;
+	color: #fff;
+}
+.randomCharacterContainer p:first-child {
+	margin: 0 0 40px;
+}
+.randomCharacterContainer p:nth-child(2) {
+	margin: 0;
+}
+.randomCharacterContainer > button {
+	position: absolute;
+	bottom: 0;
+}

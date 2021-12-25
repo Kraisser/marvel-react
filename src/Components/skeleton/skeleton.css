@@ -1,0 +1,46 @@
+.skeletonHeader {
+	font-size: 18px;
+	margin: 0 0 33px;
+	text-align: center;
+}
+.skeletonContainer {
+	display: grid;
+	grid-row-gap: 15px;
+}
+.skeletonChar {
+	display: grid;
+	grid-template-columns: 40px 1fr;
+	grid-column-gap: 10px;
+	align-items: center;
+}
+.skeletonRound {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+.skeletonEmptyHeader {
+	height: 16px;
+	width: 100%;
+}
+.skeletonComics {
+	width: 100%;
+	height: 35px;
+}
+.skeletonRound,
+.skeletonEmptyHeader,
+.skeletonComics {
+	background-color: rgba(196, 196, 196, 1);
+	animation: blinding 2s ease-in-out infinite;
+}
+
+@keyframes blinding {
+	from {
+		background-color: rgba(196, 196, 196, 1);
+	}
+	50% {
+		background-color: rgba(196, 196, 196, 0.5);
+	}
+	to {
+		background-color: rgba(196, 196, 196, 1);
+	}
+}

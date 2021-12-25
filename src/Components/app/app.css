@@ -1,0 +1,50 @@
+@import '../../variables.css';
+/* CommonClasses */
+.marvelRedBack {
+	background-color: var(--marvelRed);
+}
+.marvelGreyBack {
+	background-color: var(--marvelGrey);
+}
+.marvelColor {
+	color: var(--marvelRed);
+}
+.flex-row {
+	display: flex;
+}
+/*  */
+
+.header {
+	width: 1100px;
+	margin: 0 auto;
+	padding: 50px 0;
+}
+.header div {
+	display: flex;
+	justify-content: space-between;
+}
+
+.main {
+	position: relative;
+	width: 1100px;
+	margin: 0 auto;
+	height: 100%;
+}
+.mainHeader {
+	font-size: 28px;
+	margin: 0;
+}
+.mainContainer {
+	padding-top: 55px;
+}
+
+.navHeader {
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.visionBg {
+	position: absolute;
+	right: -10%;
+	bottom: 0;
+}

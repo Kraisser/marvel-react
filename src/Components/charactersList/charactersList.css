@@ -1,0 +1,14 @@
+.charactersListWrapper {
+	margin-right: 25px;
+}
+.charactersListContainer {
+	display: grid;
+	grid-gap: 30px 25px;
+	max-width: 650px;
+	grid-template: repeat(auto-fill, 318px) / repeat(auto-fill, 200px);
+}
+.longButContainer {
+	margin: 45px auto 45px;
+	display: flex;
+	justify-content: center;
+}

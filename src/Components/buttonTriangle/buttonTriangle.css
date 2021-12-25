@@ -1,0 +1,92 @@
+@import '../../variables.css';
+
+/* CommonClasses */
+.commonBut {
+	width: 101px;
+	height: 38px;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	display: block;
+	padding: 0;
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	transition: transform 0.3s ease;
+}
+.commonBut.preInfoBut {
+	margin-right: 30px;
+}
+.commonBut.longBut {
+	width: 170px;
+}
+.commonBut:hover {
+	transform: translateY(-5px);
+}
+.commonBut::before,
+.commonBut::after {
+	content: '';
+	display: block;
+	height: 10px;
+	transition: none;
+}
+.commonBut::before {
+	margin-left: 10px;
+}
+.commonBut::after {
+	margin-right: 10px;
+}
+.commonBut:disabled {
+	filter: grayscale(0.5);
+	cursor: default;
+}
+.commonBut:disabled:hover {
+	transform: none;
+}
+
+.commonBut div {
+	position: relative;
+	transition: none;
+}
+
+.commonBut div::before,
+.commonBut div::after {
+	border-style: solid;
+	border-width: 0 0 10px 10px;
+	content: '';
+	display: block;
+	position: absolute;
+	transition: none;
+}
+.commonBut div::before {
+	left: 0;
+	top: -10px;
+}
+.commonBut div::after {
+	right: 0;
+	bottom: -10px;
+	transform: rotate(180deg);
+}
+
+.commonBut.backRed div::before,
+.commonBut.backRed div::after {
+	border-color: var(--marvelRed) transparent;
+}
+.commonBut.backGrey div::before,
+.commonBut.backGrey div::after {
+	border-color: var(--marvelGrey) transparent;
+}
+.commonBut.backRed::after,
+.commonBut.backRed::before {
+	background-color: var(--marvelRed);
+}
+.commonBut.backGrey::after,
+.commonBut.backGrey::before {
+	background-color: var(--marvelGrey);
+}
+/*  */
+
+.hidden {
+	display: none;
+}
