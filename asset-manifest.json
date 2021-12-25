@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/marvel-react/build/static/css/main.9970cd48.css",
-    "main.js": "/marvel-react/build/static/js/main.0a7e286b.js",
-    "static/media/visionBg.png": "/marvel-react/build/static/media/visionBg.8de497492999c5d20b03.png",
-    "static/media/404Error.png": "/marvel-react/build/static/media/404Error.47a8d543fe185d4f2e29.png",
-    "static/media/shield and hammer.png": "/marvel-react/build/static/media/shield and hammer.439ab19cfabed7d9d9b8.png",
-    "index.html": "/marvel-react/build/index.html",
-    "main.9970cd48.css.map": "/marvel-react/build/static/css/main.9970cd48.css.map",
-    "main.0a7e286b.js.map": "/marvel-react/build/static/js/main.0a7e286b.js.map"
+    "main.css": "/marvel-react/static/css/main.9970cd48.css",
+    "main.js": "/marvel-react/static/js/main.12ca253c.js",
+    "static/media/visionBg.png": "/marvel-react/static/media/visionBg.8de497492999c5d20b03.png",
+    "static/media/404Error.png": "/marvel-react/static/media/404Error.47a8d543fe185d4f2e29.png",
+    "static/media/shield and hammer.png": "/marvel-react/static/media/shield and hammer.439ab19cfabed7d9d9b8.png",
+    "index.html": "/marvel-react/index.html",
+    "main.9970cd48.css.map": "/marvel-react/static/css/main.9970cd48.css.map",
+    "main.12ca253c.js.map": "/marvel-react/static/js/main.12ca253c.js.map"
   },
   "entrypoints": [
     "static/css/main.9970cd48.css",
-    "static/js/main.0a7e286b.js"
+    "static/js/main.12ca253c.js"
   ]
 }
