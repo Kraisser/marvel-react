@@ -1,5 +1,9 @@
 @import '../../variables.css';
 /* CommonClasses */
+a {
+	color: black;
+	text-decoration: none;
+}
 .marvelRedBack {
 	background-color: var(--marvelRed);
 }

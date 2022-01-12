@@ -1,48 +1,43 @@
 import './app.css';
 
-import visionBg from '../../assets/visionBg.png';
+import {BrowserRouter as Router, Switch, Route, Link, NavLink} from 'react-router-dom';
 
-import { Component } from 'react';
+import {MainPage, ComicsPage} from '../pages';
 
-import CharacterPreInfo from '../characterPreInfo/CharacterPreInfo';
-import CharactersList from '../charactersList/CharactersList';
-import CharactertDescription from '../characterDescription/CharacterDescription';
-import ErrorBoundary from '../errorBoundary/ErrorBoundary';
+export default function App() {
+	return (
+		<>
+			<Router>
+				<header className='header'>
+					<div>
+						<h2 className='mainHeader'>
+							<Link to='/' className='navLinks'>
+								<span className='marvelColor'>Marvel</span> information portal
+							</Link>
+						</h2>
+						<nav className='navHeader'>
+							<NavLink exact activeClassName='marvelColor' to='/'>
+								Characters
+							</NavLink>{' '}
+							/{' '}
+							<NavLink exact activeClassName='marvelColor' to='/comics'>
+								Comics
+							</NavLink>
+						</nav>
+					</div>
+				</header>
+				<main className='main'>
+					<Switch>
+						<Route exact path='/'>
+							<MainPage />
+						</Route>
 
-export default class App extends Component {
-
-  state = {
-    charId: null
-  }
-
-  onCharSelect = (id) => {
-    this.setState({ charId: id });
-  }
-
-  render() {
-    return (
-      <>
-        <header className="header">
-          <div>
-            <h2 className='mainHeader'><span className="marvelColor">Marvel</span> information portal</h2>
-            <nav className='navHeader'><span className="marvelColor">Characters</span> / Comics</nav>
-          </div>
-        </header>
-        <main className="main">
-          <ErrorBoundary>
-            <CharacterPreInfo />
-          </ErrorBoundary>
-          <div className='flex-row mainContainer'>
-            <ErrorBoundary>
-              <CharactersList onCharSelect={this.onCharSelect}/>        
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <CharactertDescription charId={this.state.charId}/>
-            </ErrorBoundary>
-          </div>
-          <img src={visionBg} className='visionBg' alt="vision bg" />
-        </main>
-      </>
-    );
-  }
+						<Route exact path='/comics'>
+							<ComicsPage />
+						</Route>
+					</Switch>
+				</main>
+			</Router>
+		</>
+	);
 }

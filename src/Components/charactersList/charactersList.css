@@ -12,3 +12,22 @@
 	display: flex;
 	justify-content: center;
 }
+.loadingWrapper {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	height: 350px;
+	min-width: 650px;
+}
+.loadingWrapper.error {
+	grid-template-rows: 300px 50px;
+}
+.loadingWrapper.error img {
+	height: 300px;
+	align-self: center;
+}
+.loadingWrapper.error h3 {
+	font-size: 24px;
+	text-align: center;
+}

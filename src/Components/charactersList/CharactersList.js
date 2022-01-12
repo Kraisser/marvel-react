@@ -1,118 +1,114 @@
 import './charactersList.css';
 
-import { Component } from 'react';
+import {useState, useEffect} from 'react';
 import nextId from 'react-id-generator';
 
-
-import MarvelService from '../../services/MarvelServices';
+import useMarvelService from '../../services/MarvelServices';
 import Character from '../character/Character';
 import ButtonTriangle from '../buttonTriangle/ButtonTriangle';
+import ErrorMessage from '../errorMessage/ErrorMessage';
 
-export default class CharactersList extends Component {
+import Spinner from '../spinner/Spinner';
 
-  state = {
-    chars: [],
-    loading: null,
-    offset: 0,
-    newItemsLoading: false,
-    charEnded: false,
-    maxChars: null,
-    selectedChar: null
-  }
+export default function CharactersList(props) {
+	const {loading, error, setMaxChars, getAllCharacters} = useMarvelService();
 
-  limit = 9;
+	const limit = 9;
 
-  marvelService = new MarvelService();
+	const [chars, setChars] = useState([]);
+	const [offset, setOffset] = useState(0);
+	const [charEnded, setCharEnded] = useState(false);
+	const [maxCharsNum, setMaxCharsNum] = useState(limit + 1);
+	const [focusCharId, setFocusCharId] = useState(null);
 
-  componentDidMount = () => {
-    this.loadingChars();
+	useEffect(() => {
+		if (chars.length === 0) {
+			setMaxChars().then((maxChars) => setMaxCharsNum(maxChars));
+			onRequest(offset);
+		}
+	}, []);
 
-    this.setMaxChars();
+	function onFocusChar(id) {
+		setFocusCharId(id);
+		setChars(setCharList(chars));
 
-    this.onRequest(this.state.offset);
-  }
+		props.onCharSelect(id);
+	}
 
-  setMaxChars = () => {
-    this.marvelService.setMaxChars()
-      .then(maxChars => this.setState({ maxChars }))
-      .catch(e => console.log(e))
-  }
+	const setCharList = (res) =>
+		res.map((item) => ({
+			name: item.name,
+			id: item.id,
+			focus: item.id === props.focusCharId ? true : false,
+			thumbnail: item.thumbnail,
+			key: nextId(),
+		}));
 
-  onRequest = (offset) => {
-    this.marvelService.getAllCharacters(this.limit, offset)
-      .then(this.onLoadChars)
-      .catch(this.loadingChars);
-  }
+	const onRequest = (offset) => {
+		getAllCharacters(limit, offset).then(onLoadChars);
 
-  onUpdateChar = () => {
-    this.loadingChars();
+		setOffset((offset) => offset + limit);
+	};
 
-    this.onRequest(this.state.offset + this.limit);    
+	const onUpdateChar = () => onRequest(offset + limit);
 
-    this.setState({
-      offset: this.state.offset + this.limit,
-      newItemsLoading: true
-    });
-  }
+	const onLoadChars = (res) => {
+		const charEnd = offset + limit >= maxCharsNum ? true : false;
 
-  onLoadChars = (res) => {
-    const charEnded = this.state.offset + this.limit >= this.state.maxChars ? true : false;
+		const newChars = setCharList(res);
 
-    const chars = res.map(item => (<Character
-      name={item.name}
-      id={item.id}
-      thumbnail={item.thumbnail}
-      setSelectChar={this.setSelectChar}
-      onCharSelect={this.props.onCharSelect}
-      key={nextId()} />));
-    
-    this.setState({
-      chars: [...this.state.chars, ...chars],
-      loading: null,
-      newItemsLoading: false,
-      charEnded: charEnded
-    });
-  }
+		setChars([...chars, ...newChars]);
+		setCharEnded(charEnd);
+	};
 
-  loadingChars = (error) => {
-    const loading = [];
+	const render = chars.map((item) => (
+		<Character
+			name={item.name}
+			id={item.id}
+			focus={item.id === focusCharId ? true : false}
+			thumbnail={item.thumbnail}
+			onFocusChar={onFocusChar}
+			key={nextId()}
+		/>
+	));
 
-    for (let i = 0; i < this.limit; i++) {
-      loading.push(<Character error={error ? error : null} key={nextId()}/>);
-    }
+	const content = {
+		loading: (
+			<div className='loadingWrapper'>
+				<Spinner key={nextId} />
+			</div>
+		),
+		error: (
+			<div className='loadingWrapper error'>
+				<ErrorMessage />
+				<h3>Error, try again</h3>
+			</div>
+		),
+	};
 
-    this.setState({ loading, newItemsLoading: true });
-  }
+	const charsWrapper =
+		(loading || error) && chars.length === 0 ? null : (
+			<div className='charactersListContainer'>{render}</div>
+		);
+	const loadingContent = loading ? content.loading : null;
+	const errorContent = error ? content.error : null;
 
-  setSelectChar = (selectedChar) => {
-    selectedChar.current.classList.add('charSelected');
-
-    if (this.state.selectedChar) {
-      this.state.selectedChar.current.classList.remove('charSelected');
-    }
-    
-    this.setState({ selectedChar });
-  }
-  
-  render() {
-    const { loading, chars, newItemsLoading, charEnded } = this.state;
-
-    return (
-      <>
-        <div className="charactersListWrapper">
-          <div className="charactersListContainer">
-            {chars}
-            {loading}
-          </div>
-          <div className="longButContainer">
-            <ButtonTriangle value="load more"
-              click={this.onUpdateChar}
-              disabled={newItemsLoading}
-              background="Red"
-              classList={`longBut ${charEnded ? `hidden` : ''}`} />
-          </div>
-        </div>
-      </>
-    )
-  }  
+	return (
+		<>
+			<div className='charactersListWrapper'>
+				{errorContent}
+				{charsWrapper}
+				{loadingContent}
+				<div className='longButContainer'>
+					<ButtonTriangle
+						value='load more'
+						click={onUpdateChar}
+						disabled={loading}
+						background='Red'
+						classList={`longBut ${charEnded ? `hidden` : ''}`}
+					/>
+				</div>
+			</div>
+		</>
+	);
 }
