@@ -1,0 +1,28 @@
+.singleContentWrapper {
+	display: flex;
+}
+.singleContentContainer {
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-between;
+}
+.singleContentWrapper img {
+	width: 293px;
+	height: 450px;
+	margin-right: 50px;
+}
+.contentDescriptionWrapper {
+	width: 550px;
+}
+.contentDescriptionWrapper h2 {
+	margin: 0 0 28px;
+	font-size: 22px;
+}
+.contentInfo {
+	font-size: 18px;
+	margin-bottom: 25px;
+}
+.comicPrice {
+	font-size: 24px;
+	font-weight: 700;
+}

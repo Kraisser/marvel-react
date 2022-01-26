@@ -1,8 +1,14 @@
 import './app.css';
 
-import {BrowserRouter as Router, Switch, Route, Link, NavLink} from 'react-router-dom';
+import {lazy, Suspense} from 'react';
+import {BrowserRouter as Router, Routes, Route, Link, NavLink} from 'react-router-dom';
 
-import {MainPage, ComicsPage} from '../pages';
+import Spinner from '../spinner/Spinner';
+
+const MainPage = lazy(() => import('../pages/MainPage'));
+const ComicsPage = lazy(() => import('../pages/ComicsPage'));
+const SingleContentPage = lazy(() => import('../pages/SingleContentPage'));
+const Page404 = lazy(() => import('../pages/404'));
 
 export default function App() {
 	return (
@@ -11,31 +17,33 @@ export default function App() {
 				<header className='header'>
 					<div>
 						<h2 className='mainHeader'>
-							<Link to='/' className='navLinks'>
+							<Link to='/marvel-react'>
 								<span className='marvelColor'>Marvel</span> information portal
 							</Link>
 						</h2>
 						<nav className='navHeader'>
-							<NavLink exact activeClassName='marvelColor' to='/'>
+							<NavLink
+								className={({isActive}) => (isActive ? `marvelColor` : '')}
+								to='/marvel-react'>
 								Characters
-							</NavLink>{' '}
-							/{' '}
-							<NavLink exact activeClassName='marvelColor' to='/comics'>
+							</NavLink>
+							<span> / </span>
+							<NavLink className={({isActive}) => (isActive ? `marvelColor` : '')} to='/comics'>
 								Comics
 							</NavLink>
 						</nav>
 					</div>
 				</header>
 				<main className='main'>
-					<Switch>
-						<Route exact path='/'>
-							<MainPage />
-						</Route>
-
-						<Route exact path='/comics'>
-							<ComicsPage />
-						</Route>
-					</Switch>
+					<Suspense fallback={<Spinner />}>
+						<Routes>
+							<Route path='/marvel-react' element={<MainPage />} />
+							<Route path='/comics' element={<ComicsPage />} />
+							<Route path='/comics/:id' element={<SingleContentPage type='comic' />} />
+							<Route path='/character/:id' element={<SingleContentPage type='char' />} />
+							<Route path='*' element={<Page404 />} />
+						</Routes>
+					</Suspense>
 				</main>
 			</Router>
 		</>

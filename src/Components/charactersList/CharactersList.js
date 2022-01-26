@@ -11,7 +11,7 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
 
 export default function CharactersList(props) {
-	const {loading, error, setMaxChars, getAllCharacters} = useMarvelService();
+	const {loading, error, setMaxChars, getAllCharacters, clearErrors} = useMarvelService();
 
 	const limit = 9;
 
@@ -45,6 +45,7 @@ export default function CharactersList(props) {
 		}));
 
 	const onRequest = (offset) => {
+		clearErrors();
 		getAllCharacters(limit, offset).then(onLoadChars);
 
 		setOffset((offset) => offset + limit);

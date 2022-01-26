@@ -1,23 +1,4 @@
-.bannerWrapper {
-	display: flex;
-	background-color: #232222;
-	padding: 0 25px 0 45px;
-	margin-bottom: 45px;
-}
-.bannerHeadersWrapper {
-	flex-grow: 1;
-	padding-left: 83px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-.bannerHeader {
-	font-size: 24px;
-	font-weight: 700;
-	color: #fff;
-	margin: 0;
-}
-.comicsListWrapper {
+.comicsItemsWrapper {
 	display: grid;
 	margin-bottom: 45px;
 	grid-gap: 57px 67px;

@@ -62,7 +62,7 @@ const View = (char) => {
 					</div>
 				</div>
 				<div>
-					<p>{description ? description : 'No description'}</p>
+					<p>{description}</p>
 				</div>
 			</div>
 			<div className='comicsListWrapper'>

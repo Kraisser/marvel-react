@@ -7,7 +7,7 @@ export default function ComicsItem(props) {
 		<div className='comicsItemWrapper'>
 			<img src={thumbnail} alt={title} />
 			<h4>{title}</h4>
-			<span>{price}$</span>
+			<span>{price}</span>
 		</div>
 	);
 }

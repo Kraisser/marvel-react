@@ -1,18 +1,19 @@
 .comicsItemWrapper {
 	width: 225px;
-	height: 415px;
-	cursor: pointer;
+	height: 413px;
 }
 .comicsItemWrapper img {
 	width: 225px;
-	height: 345px;
+	height: 346px;
 	filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.25));
 }
 .comicsItemWrapper h4 {
-	margin: 10px 0;
+	margin: 10px 0 5px;
 	font-size: 14px;
-	font-weight: 700;
 }
-.comicsItemWrapper span {
-	color: rgba(0, 0, 0, 0, 6);
+.comicBackLink {
+	position: absolute;
+	right: 0;
+	font-weight: 700;
+	font-size: 18px;
 }

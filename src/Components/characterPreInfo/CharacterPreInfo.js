@@ -78,7 +78,7 @@ const View = (char) => {
 			<div className='preInfoContainer'>
 				<h3>{name}</h3>
 				<div className='preInfoDescriptionOverflow'>
-					<p className='preInfoDescription'>{description ? description : 'No description'}</p>
+					<p className='preInfoDescription'>{description}</p>
 				</div>
 				<div className='preInfoLinkContainer'>
 					<ButtonTriangle

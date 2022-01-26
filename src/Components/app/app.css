@@ -41,6 +41,10 @@ a {
 .mainContainer {
 	padding-top: 55px;
 }
+.rightMainContent {
+	height: 100%;
+	z-index: 2;
+}
 
 .navHeader {
 	font-size: 24px;

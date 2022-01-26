@@ -1,11 +1,14 @@
 import './comics.css';
 
-export default function Comics(props) {
-  const { name, link } = props;
+import {Link} from 'react-router-dom';
 
-  return (
-    <div className="comicsWrapper">
-      <a href={link} target="_blank" rel="noreferrer">{name}</a>
-    </div>
-  )
+export default function Comics(props) {
+	const {name, link} = props;
+	const id = link.match(/[0-9]{1,}$/gm)[0];
+
+	return (
+		<div className='comicsWrapper'>
+			<Link to={`/comics/${id}`}>{name}</Link>
+		</div>
+	);
 }
