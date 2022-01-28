@@ -1,8 +1,9 @@
+import './comicsList.css';
+import '../../utils/setContent.css';
+
 import {useState, useEffect} from 'react';
 import nextId from 'react-id-generator';
 import {Link} from 'react-router-dom';
-
-import './comicsList.css';
 
 import ComicsItem from '../comicsItem/comicsItem';
 import ButtonTriangle from '../buttonTriangle/ButtonTriangle';
@@ -12,10 +13,47 @@ import ComicBanner from '../comicsBanner/ComicBanner';
 
 import Spinner from '../spinner/Spinner';
 
+function setContent(process, Component, data) {
+	console.log('process', process);
+	switch (process) {
+		case 'waiting':
+			return (
+				<div className='loadingWrapper'>
+					<Spinner />
+				</div>
+			);
+		case 'loading':
+			return data.length > 0 ? (
+				<div className='comicsItemsWrapper'>
+					<Component />
+				</div>
+			) : (
+				<div className='loadingWrapper'>
+					<Spinner />
+				</div>
+			);
+		case 'success':
+			return (
+				<div className='comicsItemsWrapper'>
+					<Component />
+				</div>
+			);
+		case 'error':
+			return (
+				<div className='loadingWrapper error'>
+					<ErrorMessage />
+					<h3>Error, try again</h3>
+				</div>
+			);
+		default:
+			throw new Error(`Unexpected process state`);
+	}
+}
+
 export default function ComicsList() {
 	const limit = 8;
 
-	const {loading, error, getAllComics, clearErrors} = useMarvelService();
+	const {loading, getAllComics, clearErrors, process, setProcess} = useMarvelService();
 
 	const [comicsList, setComicsList] = useState([]);
 	const [offset, setOffset] = useState(0);
@@ -30,48 +68,26 @@ export default function ComicsList() {
 
 	const onRequest = () => {
 		clearErrors();
-		getAllComics(limit, offset).then((res) => updateComics(res));
+		getAllComics(limit, offset)
+			.then((res) => updateComics(res))
+			.then(() => setProcess('success'));
 		setOffset((offset) => offset + limit);
 	};
 
-	const setRenderItems = (item) => {
-		return (
+	const setRenderItems = (comicsList) => {
+		const renderItems = comicsList.map((item) => (
 			<Link to={`/comics/${item.id}`} key={nextId()}>
 				<ComicsItem thumbnail={item.thumbnail} title={item.title} price={item.price} />
 			</Link>
-		);
+		));
+		return renderItems;
 	};
-
-	const render = comicsList.map((item) => setRenderItems(item));
-
-	const content = {
-		loading: (
-			<div className='loadingWrapper'>
-				<Spinner key={nextId} />
-			</div>
-		),
-		error: (
-			<div className='loadingWrapper error'>
-				<ErrorMessage />
-				<h3>Error, try again</h3>
-			</div>
-		),
-	};
-
-	const comicsListRender =
-		(loading || error) && render.length === 0 ? null : (
-			<div className='comicsItemsWrapper'>{render}</div>
-		);
-	const loadingRender = loading ? content.loading : null;
-	const errorContent = error ? content.error : null;
 
 	return (
 		<>
 			<ComicBanner />
 			<div>
-				{comicsListRender}
-				{loadingRender}
-				{errorContent}
+				{setContent(process, () => setRenderItems(comicsList), comicsList)}
 				<div className='loadButWrapper' onClick={onRequest}>
 					<ButtonTriangle value='Load more' background='Red' disabled={loading} />
 				</div>

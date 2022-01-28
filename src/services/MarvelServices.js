@@ -1,7 +1,7 @@
 import {useHttp} from '../hooks/http.hook';
 
 export default function useMarvelService() {
-	const {loading, error, request, clearErrors} = useHttp();
+	const {loading, process, setProcess, request, clearErrors} = useHttp();
 
 	const _baseUrl = 'https://gateway.marvel.com:443/v1/public/';
 	const _apiBase = 'apikey=36f1abc750cc1a335225f4c72681de4e';
@@ -33,14 +33,14 @@ export default function useMarvelService() {
 	};
 
 	const getCharacterByName = async (name) => {
-		console.log(name);
 		const res = await request(`${_baseUrl}characters?name=${name}&${_apiBase}`);
+		console.log(res);
 
 		if (res.data.results[0]) {
 			return _transformCharData(res.data.results[0]);
 		}
 
-		return false;
+		throw new Error(`Character not found`);
 	};
 
 	const getAllComics = async (limit, offset = _comicsOffset) => {
@@ -85,13 +85,14 @@ export default function useMarvelService() {
 
 	return {
 		loading,
-		error,
+		process,
+		setProcess,
+		clearErrors,
 		setMaxChars,
 		getAllCharacters,
 		getCharacter,
 		getCharacterByName,
 		getAllComics,
 		getComic,
-		clearErrors,
 	};
 }

@@ -4,17 +4,16 @@ import {useState, useEffect} from 'react';
 import {useParams, Link} from 'react-router-dom';
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 
-import ErrorMessage from '../errorMessage/ErrorMessage';
 import useMarvelService from '../../services/MarvelServices';
 import ComicBanner from '../comicsBanner/ComicBanner';
-
-import Spinner from '../spinner/Spinner';
+import setRenderContent from '../../utils/setContent';
 
 export default function SingleContentPage(props) {
 	const {id} = useParams();
 	const [content, setContent] = useState(null);
-	const {loading, error, getComic, getCharacter, clearErrors} = useMarvelService();
+	const {getComic, getCharacter, clearErrors, process, setProcess} = useMarvelService();
 	const contentType = props.type;
+	const ViewComponent = contentType === 'char' ? ViewChar : ViewComic;
 
 	useEffect(() => {
 		switch (contentType) {
@@ -33,36 +32,33 @@ export default function SingleContentPage(props) {
 	const updateComic = () => {
 		clearErrors();
 
-		getComic(id).then(onLoadContent);
+		getComic(id)
+			.then(onLoadContent)
+			.then(() => setProcess('success'));
 	};
 
 	const updateChar = () => {
 		clearErrors();
 
-		getCharacter(id).then(onLoadContent);
+		getCharacter(id)
+			.then(onLoadContent)
+			.then(() => setProcess('success'));
 	};
 
 	const onLoadContent = (content) => {
 		setContent(content);
 	};
 
-	const ViewComponent = contentType === 'char' ? ViewChar : ViewComic;
-	const renderContent = !loading && !error && content ? ViewComponent(content) : null;
-	const loadingContent = loading && !error ? <Spinner /> : null;
-	const errorContent = error ? <ErrorMessage /> : null;
-
 	return (
 		<>
 			<ComicBanner />
-			{renderContent}
-			{loadingContent}
-			{errorContent}
+			{setRenderContent(process, ViewComponent, content)}
 		</>
 	);
 }
 
-function ViewComic(comic) {
-	const {thumbnail, title, price, description, pageCount, language} = comic;
+function ViewComic({data}) {
+	const {thumbnail, title, price, description, pageCount, language} = data;
 
 	return (
 		<>
@@ -92,8 +88,8 @@ function ViewComic(comic) {
 	);
 }
 
-function ViewChar(char) {
-	const {thumbnail, name, description} = char;
+function ViewChar({data}) {
+	const {thumbnail, name, description} = data;
 
 	return (
 		<>

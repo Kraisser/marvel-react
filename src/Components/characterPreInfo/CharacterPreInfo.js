@@ -1,35 +1,18 @@
 import './characterPreInfo.css';
 
 import {useState, useEffect} from 'react';
-import nextId from 'react-id-generator';
 
 import shieldAndHammer from '../../assets/shield and hammer.png';
 
 import ButtonTriangle from '../buttonTriangle/ButtonTriangle';
 
-import Spinner from '../spinner/Spinner';
-import ErrorMessage from '../errorMessage/ErrorMessage';
 import useMarvelService from '../../services/MarvelServices';
+import setContent from '../../utils/setContent';
 
 export default function CharacterPreInfo() {
 	const [char, setChar] = useState({});
 
-	const {loading, error, getCharacter, clearErrors} = useMarvelService();
-
-	const troubleContent = {
-		error: (
-			<>
-				<ErrorMessage />
-				<h2>404</h2>
-			</>
-		),
-		loading: (
-			<>
-				<Spinner key={nextId()} />
-				<Spinner key={nextId()} />
-			</>
-		),
-	};
+	const {getCharacter, clearErrors, process, setProcess} = useMarvelService();
 
 	useEffect(() => {
 		updateChar();
@@ -43,20 +26,14 @@ export default function CharacterPreInfo() {
 		clearErrors();
 		const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
 
-		getCharacter(id).then(onLoadChar);
+		getCharacter(id)
+			.then(onLoadChar)
+			.then(() => setProcess('success'));
 	};
-
-	const errorMessage = error ? troubleContent.error : null,
-		loadingProcess = loading ? troubleContent.loading : null,
-		content = error || loading ? null : View(char);
 
 	return (
 		<div className='charPreinfoWrapper'>
-			<div className='preInfoWrapper'>
-				{errorMessage}
-				{loadingProcess}
-				{content}
-			</div>
+			<div className='preInfoWrapper'>{setContent(process, View, char)}</div>
 			<div className='randomCharacterWrapper'>
 				<img src={shieldAndHammer} alt='shield and hammer' />
 				<div className='randomCharacterContainer'>
@@ -69,8 +46,8 @@ export default function CharacterPreInfo() {
 	);
 }
 
-const View = (char) => {
-	const {name, description, thumbnail, homepage, wiki} = char;
+const View = ({data}) => {
+	const {name, description, thumbnail, homepage, wiki} = data;
 
 	return (
 		<>
