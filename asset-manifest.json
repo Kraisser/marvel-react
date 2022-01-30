@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/marvel-react/static/css/main.e29643b1.css",
-    "main.js": "/marvel-react/static/js/main.ded77d5e.js",
-    "static/css/27.d740143e.chunk.css": "/marvel-react/static/css/27.d740143e.chunk.css",
-    "static/js/27.c2a47229.chunk.js": "/marvel-react/static/js/27.c2a47229.chunk.js",
-    "static/css/555.8851a418.chunk.css": "/marvel-react/static/css/555.8851a418.chunk.css",
-    "static/js/555.53515405.chunk.js": "/marvel-react/static/js/555.53515405.chunk.js",
-    "static/css/503.68efe4c4.chunk.css": "/marvel-react/static/css/503.68efe4c4.chunk.css",
-    "static/js/503.4db192eb.chunk.js": "/marvel-react/static/js/503.4db192eb.chunk.js",
+    "main.js": "/marvel-react/static/js/main.70d647b3.js",
+    "static/css/780.d46a1631.chunk.css": "/marvel-react/static/css/780.d46a1631.chunk.css",
+    "static/js/780.499b810a.chunk.js": "/marvel-react/static/js/780.499b810a.chunk.js",
+    "static/css/555.a9709e42.chunk.css": "/marvel-react/static/css/555.a9709e42.chunk.css",
+    "static/js/555.4a545ee4.chunk.js": "/marvel-react/static/js/555.4a545ee4.chunk.js",
+    "static/css/503.0e3d56d9.chunk.css": "/marvel-react/static/css/503.0e3d56d9.chunk.css",
+    "static/js/503.3a29158f.chunk.js": "/marvel-react/static/js/503.3a29158f.chunk.js",
     "static/css/942.413d5de3.chunk.css": "/marvel-react/static/css/942.413d5de3.chunk.css",
     "static/js/942.42bc4e02.chunk.js": "/marvel-react/static/js/942.42bc4e02.chunk.js",
     "static/js/907.81ff42eb.chunk.js": "/marvel-react/static/js/907.81ff42eb.chunk.js",
-    "static/js/934.b1e9a404.chunk.js": "/marvel-react/static/js/934.b1e9a404.chunk.js",
+    "static/js/757.e0539509.chunk.js": "/marvel-react/static/js/757.e0539509.chunk.js",
     "static/media/visionBg.png": "/marvel-react/static/media/visionBg.8de497492999c5d20b03.png",
     "static/media/404Error.png": "/marvel-react/static/media/404Error.47a8d543fe185d4f2e29.png",
     "static/media/shield and hammer.png": "/marvel-react/static/media/shield and hammer.439ab19cfabed7d9d9b8.png",
@@ -19,20 +19,20 @@
     "static/media/Avengers logo.png": "/marvel-react/static/media/Avengers logo.a0e4cca1091366da37c4.png",
     "index.html": "/marvel-react/index.html",
     "main.e29643b1.css.map": "/marvel-react/static/css/main.e29643b1.css.map",
-    "main.ded77d5e.js.map": "/marvel-react/static/js/main.ded77d5e.js.map",
-    "27.d740143e.chunk.css.map": "/marvel-react/static/css/27.d740143e.chunk.css.map",
-    "27.c2a47229.chunk.js.map": "/marvel-react/static/js/27.c2a47229.chunk.js.map",
-    "555.8851a418.chunk.css.map": "/marvel-react/static/css/555.8851a418.chunk.css.map",
-    "555.53515405.chunk.js.map": "/marvel-react/static/js/555.53515405.chunk.js.map",
-    "503.68efe4c4.chunk.css.map": "/marvel-react/static/css/503.68efe4c4.chunk.css.map",
-    "503.4db192eb.chunk.js.map": "/marvel-react/static/js/503.4db192eb.chunk.js.map",
+    "main.70d647b3.js.map": "/marvel-react/static/js/main.70d647b3.js.map",
+    "780.d46a1631.chunk.css.map": "/marvel-react/static/css/780.d46a1631.chunk.css.map",
+    "780.499b810a.chunk.js.map": "/marvel-react/static/js/780.499b810a.chunk.js.map",
+    "555.a9709e42.chunk.css.map": "/marvel-react/static/css/555.a9709e42.chunk.css.map",
+    "555.4a545ee4.chunk.js.map": "/marvel-react/static/js/555.4a545ee4.chunk.js.map",
+    "503.0e3d56d9.chunk.css.map": "/marvel-react/static/css/503.0e3d56d9.chunk.css.map",
+    "503.3a29158f.chunk.js.map": "/marvel-react/static/js/503.3a29158f.chunk.js.map",
     "942.413d5de3.chunk.css.map": "/marvel-react/static/css/942.413d5de3.chunk.css.map",
     "942.42bc4e02.chunk.js.map": "/marvel-react/static/js/942.42bc4e02.chunk.js.map",
     "907.81ff42eb.chunk.js.map": "/marvel-react/static/js/907.81ff42eb.chunk.js.map",
-    "934.b1e9a404.chunk.js.map": "/marvel-react/static/js/934.b1e9a404.chunk.js.map"
+    "757.e0539509.chunk.js.map": "/marvel-react/static/js/757.e0539509.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e29643b1.css",
-    "static/js/main.ded77d5e.js"
+    "static/js/main.70d647b3.js"
   ]
 }
